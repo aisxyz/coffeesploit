@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %} 
+<button type='button' onclick='clearLogs()'>清除记录</button>
+<div class="panel panel-primary" id='myWrapper'>
+	{% if not showLog %}
+		<strong><em>目前为止没有任何使用记录。可能你是第一次使用，也可能是它们被删除了 ^_^。</em></strong>
+	{% else %}
+		<div>
+			{% for log in showLog %}
+				<span class="panel-title">{{ log|safe }}</span><br/>
+			{% endfor %}
+		</div>
+	{% endif %}
+	{% if comLog %}
+		<div id='show0'>
+			<span onclick='showMore()' style='color:blue'>查看更多?</span>
+		</div>
+	{% endif %}
+</div>
+
+		<script>
+			var counter=0;
+			var showNum=2;		
+			var comLog={{comLog|safe}};
+
+			function showMore(){
+				var msg="";
+				var showLog=comLog.slice(counter,counter+showNum);
+				for(var i=0;i<showLog.length;i++){
+					msg+="<span class='panel-title'>"+showLog[i]+"</span></br>";
+				}
+				document.getElementById("show"+counter).innerHTML=msg;
+				counter+=showNum;
+				if(comLog[counter] !== undefined){
+					var divNode=document.createElement('div');
+					divNode.id='show'+counter;
+
+					var spanNode=document.createElement('span');
+					spanNode.addEventListener('click',showMore);
+					var textNode=document.createTextNode("查看更多?");
+					spanNode.style.color='blue';
+					spanNode.appendChild(textNode);
+
+					divNode.appendChild(spanNode);
+					document.getElementById('myWrapper').appendChild(divNode);
+				}
+			}
+			
+			function clearLogs(){
+				var path="{{path}}";
+				alert("注：该功能需要浏览器支持ActiveX插件，否则不起任何作用，可选用IE浏览器,或手动删除"+path+"。");
+				var fso=new ActiveXObject("Scripting.FileSystemObject");
+				var f=fso.OpenTextFile(path,ForWriting);
+				f.Write('');
+				f.Close();
+			}
+		</script>
+{% endblock %}

@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+import nmap  # use python nmap parse lib
+import sys
+from coffesploit.core.pluginmanage.plugin import Plugin
+
+class NmapParser(Plugin):
+	def __init__(self):
+		#self.tool_name = "nmap"
+		#super(NmapParser, self).__init__("nmap")			# All plugins need to do so!
+		self.nm = nmap.PortScanner()
+		self.hosts = None
+		self.ports = None
+		self.arguments = "-sV"
+		self.scan_result = None
+			
+	def start_scan(self):
+		if self.hosts is not None:
+			try:
+				self.scan_result = self.nm.scan(self.hosts, self.ports, self.arguments)
+			except nmap.PortScannerError, e:
+				print("Nmap has something wrong while scanning!", sys.exc_info()[0],e)
+				sys.exit(0)
+			except:
+				print("Unexpected error:", sys.exc_info()[0])
+				sys.exit(0)
+		else:
+			print 'please set hosts'
+			
+	def result(self):
+		if self.hosts is not None and self.nm.all_hosts():
+			return self.scan_result.update({'结果': 'ok?'})
+					
+	def run(self, status):
+		if status and type(status) == dict:
+			self.hosts = status.get('hosts', None)
+			self.ports = status.get('ports', None)
+			self.arguments = status.get('arguments', "-sV")
+			#super(NmapParser, self).run(status)				# All plugins need to do so.
+			print "scanning .................\n", "please wait!\n"
+			self.start_scan()
+		
+	def status(self):
+		return {"hosts": self.hosts, "ports": self.ports, "arguments": self.arguments}
+		
+	def help(self):
+		return( "Description: scan given hosts\n" +
+				"You must pass hosts, but 'ports' and 'arguments' are optional.\n" +
+				"hosts = string for hosts as nmap use it 'scanme.nmap.org' or '198.116.0-255.1-127' or '216.163.128.20/20'\n" +
+				"ports = string for ports as nmap use it '22,53,110,143-4564'\n" +
+				"arguments = string of arguments for nmap '-sU -sX -sC' and so on.\n\n")

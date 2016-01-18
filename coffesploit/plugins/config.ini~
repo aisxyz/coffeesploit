@@ -1,0 +1,4 @@
+scan,ftpanonymouslogin,FtpAnonymousLogin.py,FtpAnonymousLogin
+exploit,sshbrute,SSHBrute.py,SSHBrute
+scan,nmapparser,NmapParser.py,NmapParser
+scan,bin,Bin.Bin.py,Bin

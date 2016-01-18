@@ -1,0 +1,161 @@
+# -*- coding: utf-8 -*-
+#import os,time
+from server import csfserver
+from flask import render_template, request, abort
+#from config import UPDATE_URL, allowed_file, __basedir
+#from werkzeug.utils import secure_filename
+from server import main
+#from coffesploit.core import pluginmanager
+
+# They both should be passed to all templates.
+tools_of_category = main.get_tools_by_category()
+tool_categories = tools_of_category.keys()
+
+@csfserver.route('/')
+@csfserver.route('/index')
+def index():
+    return render_template("index.html", toolCategories=tool_categories, toolsList=tools_of_category)
+
+@csfserver.route('/setArgs/<toolName>')
+def set_args(toolName):
+	main.use(toolName)
+	argStatus = main.current_plugin_status()
+	return render_template('set_args.html', toolCategories=tool_categories, toolsList=tools_of_category, argStatus=argStatus)
+
+def convertSpaceToInHTML(string):
+	import re
+	replaceMap = {'\t': "&nbsp;"*4, ' ': "&nbsp;", '\n': "<br>"}
+	def replaceMatchObj(matchObj):
+		return replaceMap[matchObj.group(0)]
+	return re.sub("\n| |\t", replaceMatchObj, string)
+
+@csfserver.route('/show', methods=['GET','POST'], defaults={'outMethod':'text'})	
+@csfserver.route('/show/<outMethod>', methods=['GET', 'POST'])
+def show_run_result(outMethod):
+	showMethods = {True: 'text', False: 'visual'}
+	controllers = {'text': True, 'visual': False}
+	if request.method == 'POST':
+		args_status = request.form
+		for k, v in args_status.items():
+			main.set(k, v)
+		if outMethod == 'text':
+			run_result = convertSpaceToInHTML(main.run())
+		elif outMethod == 'visual':
+			run_result = main.run(outMethod)
+		else:
+			abort(401)
+	else:
+		if outMethod == 'text':
+			run_result = convertSpaceToInHTML(main.get_result_for_text())
+		elif outMethod == 'visual':
+			run_result = main.get_result_for_visual()
+		else:
+			abort(401)
+	current_tool = main.current_plugin_name()
+	return render_template("show.html", toolCategories=tool_categories, toolsList=tools_of_category, runResult=run_result, currentTool=current_tool, controller=controllers[outMethod], showMethods=showMethods)
+
+#######################################################################
+@csfserver.route('/about')
+def about():
+    return render_template("about.html")
+
+
+@csfserver.route('/setting')
+def setting():
+    return render_template('setting.html', title="Upload your plugin")
+
+
+@csfserver.route('/upload/<plugin_type>', methods=['POST', 'GET'])
+def upload(plugin_type):
+    if request.method == "POST":
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, plugin_type+'/'+filename))
+    return render_template('setting.html',
+                           title=plugin_type+" plugin upload",
+                           plugin_type=plugin_type)
+
+
+@csfserver.route('/set_plugin', methods=['GET'])
+def set_plugin():
+    plugin_name = request.args.get('plugin', 0, type=str)
+    main.use(plugin_name)
+    return jsonify(plugin=plugin_name)
+
+
+@csfserver.route('/plugin/<plugin_name>', methods=['GET', 'POST'])
+def plugin(plugin_name):
+    if request.method == 'GET':
+        main.use(plugin_name)
+        plugin_name = main.current_plugin_name()
+        plugin_type = main.current_plugin_type()
+        print "Using Plugin:", plugin_name
+        status = None
+        if main.pluginmanager.current_plugin is not None:
+            status = main.pluginmanager.plugin_status()
+        if status is None:
+            return jsonify("ERROR!")
+        return jsonify(title=plugin_type+"/"+plugin_name,plugin_name=plugin_name,status=status)
+
+
+@csfserver.route('/history')		# show log page
+def log_trace():
+	try:
+		showNum=50
+		path=__basedir+'/server/history.log'
+		with open(__basedir+'/server/history.log') as f:
+			log_list=f.readlines()
+			log_list.reverse()
+			showLog,log_list=log_list[:showNum],log_list[showNum:]
+	except IOError:
+		showLog,log_list=[],[]
+	return render_template('history.html',comLog=log_list,showLog=showLog,path=path)
+
+@csfserver.route('/run_plugin', methods=['GET','POST'])
+def run_plugin():
+    status = main.pluginmanager.plugin_status()
+    if request.method == 'POST':
+		trace='time: '+time.strftime('%Y-%m-%d %H:%M')+' &nbsp;&nbsp;&nbsp;&nbsp;plugin: '+main.current_plugin_name()	# 'trace' is used to log
+		for arg in status:
+			print arg, ":", request.form.get(arg)
+			trace+=' &nbsp;&nbsp;&nbsp;&nbsp;'+arg+': '+request.form.get(arg)	# log input ####
+			plu_arg = request.form.get(arg)
+			plu_arg = str(plu_arg)
+			if plu_arg is not None and plu_arg != "":
+				main.set(str(arg), plu_arg)
+		main.pluginmanager.plugin_run()
+		with open(__basedir+'/server/history.log','a+') as f:			#log in file
+			trace+=' &nbsp;&nbsp;&nbsp;&nbsp;result: '+pluginmanager.IsSucceed+'\n'
+			f.write(trace)
+
+		return jsonify(status='SUCCESS')
+
+
+@csfserver.route('/reports')
+def reports():
+    if main.pluginmanager.current_plugin_name is None:
+        redirect('/index')
+    else:
+        flash("Plugin is runing please wait!!!!")
+        print main.pluginmanager.plugin_result()
+    return render_template('reports.html',
+                           title=main.current_plugin_name(),
+                           result=main.pluginmanager.plugin_result(),
+                           )
+
+
+@csfserver.route('/plugin_list')
+def plugin_list():
+    plugin_list = main.plugin_list
+    scan_plugins = []
+    exploit_plugins = []
+    payload_plugins = []
+    for plugin in plugin_list:
+        if plugin_list[plugin][0] == "scan":  # type == scan
+            scan_plugins.append(plugin)
+        elif plugin_list[plugin][0] == "exploit":  # type == exploit
+            exploit_plugins.append(plugin)
+        elif plugin_list[plugin][0] == "payload":  # type == payload
+            payload_plugins.append(plugin)
+    return jsonify({'scan' : scan_plugins,'exploit' : exploit_plugins,'payload': payload_plugins})

@@ -1,0 +1,64 @@
+#showArea{
+	width:88%;
+	height: 500px;
+	background-image:url('/static/images/showBg.jpg');
+	background-size: cover;
+	border-radius: 20%;	
+	left: 90px;
+	position: relative;
+	color: rgb(0, 255, 0);
+	border: 1px solid #808080;
+}
+#mask{
+	width: 100%;
+	height: 100%;
+	border-radius: 20%;
+	position: absolute;
+	-webkit-transition: all .5s ease-in;
+	transition: all .5s ease-in;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+#textArea{
+	height: 100%;
+	width: 75%;
+	left: 15%;
+	position: absolute;
+	overflow: auto;
+	font-size: 200%
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#showArea:hover #mask{
+	background-color: rgba(0, 0, 0, 0.8);
+}
+#toolArea, #buttonArea{
+	height: 100%;
+	position: absolute;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#toolArea{
+	width: 15%;
+	border-right: 2px solid #E07514;
+	border-top-left-radius: 20%;
+	border-bottom-left-radius: 20%;
+}
+#buttonArea{
+	width: 10%;
+	right: 0;
+	border-left: 2px solid #E07514;
+	border-top-right-radius: 20%;
+	border-bottom-right-radius: 20%;
+}
+.info{
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	text-align: center;
+	-webkit-transform:translateY(-50%);
+	transform:translateY(-50%);
+}

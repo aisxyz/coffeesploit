@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block css %}
+		<link href='/static/css/show.css' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+		<div id="showArea">
+			<div id='mask'>
+				{% if controller %}
+				<div id='toolArea'><div class='info'><h3>{{ currentTool }}<h3></div></div>
+				<div id='textArea'>
+					{{ runResult|safe }}
+				</div>
+				{% else %}
+				<div id='visualArea' style='height:100%'></div>
+				{% endif %}
+				<div id='buttonArea'>
+					<div class='info'>
+						<a href="{{url_for('show_run_result', outMethod=showMethods[not controller])}}">
+							<button type='button' class='btn'>切换</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% if not controller %}
+	{% block js %}
+	<script src='http://echarts.baidu.com/build/dist/echarts.js'></script>
+	<script>
+		var resultDatas = {{ runResult|safe }};
+		var option = {
+			title:{
+				show: false,
+				//text: '{{ currentTool }}'
+			},
+			toolbox:{
+				show:true,
+				feature:{
+					mark:{show:true},
+					//dataView:{show:false},
+					//restore:{show:false},
+					saveAsImage:{show:true}
+				}
+			},
+			series:[
+				{
+					type:'tree',
+					orient:'horizontal',
+					rootLocation:{x:'left',y:'center'},
+					nodePadding:10,
+					layerPadding:100,
+					roam:true,
+					symbolSize:10,
+					itemStyle:{
+						normal:{
+							color:'#4883b4',
+							label:{
+								show:true,
+								position:'right',
+								formatter:"{b}",
+								textStyle:{
+									color:'#0f0',
+									//fontSize:5
+								}
+							},
+							lineStyle:{
+								color:'#484848',
+								type:'curve'
+							}
+						}
+					},
+				
+					data: resultDatas
+				}
+			]
+		};
+		require.config({
+			paths:{echarts: 'http://echarts.baidu.com/build/dist'}
+		});
+		require(
+			[ 'echarts', 'echarts/chart/tree' ],
+			function(ec){
+				var myChart = ec.init(document.getElementById('visualArea'));
+				myChart.setOption(option);
+			}
+		)
+	</script>
+	{% endblock %}
+{% endif %}

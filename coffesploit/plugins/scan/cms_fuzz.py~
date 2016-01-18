@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+import urllib2
+import re
+import threading
+import os
+import sys
+import socket
+import signal
+class cms_fuzz(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.url = 'http://www.wordpress.cn'
+        #self.name = name
+    def run(self):       
+            filepath = "./Bin/" + self.name 
+            i = 0
+            for line in open(filepath): 
+                global stop
+                i = i + 1
+                if i <= 2:
+                    continue
+                texts = line.split("------")
+                response = self.curl(texts[0])
+                if re.search(texts[1], str(response)):
+                    return(texts[1])
+    
+    def status(self):
+		    return {"hosts": self.url}
+    
+    def curl(self, path):
+                    url = self.url + path
+                    try:
+                        request = urllib2.Request(url)
+                        response = urllib2.urlopen(request, timeout=10)
+                        res = response.read()
+                        response.close()
+                    except urllib2.URLError,e:
+                        return e
+                    except socket.timeout as e:
+                        return e
+                    return res  
+    def help(self):
+        return("Example: %s http://www.52py.org") 

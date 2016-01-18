@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %} 
+<div>
+	{% for line in log_list %}
+
+	{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block toolsList %}
+		<div id="tools-content" class="nav-content">
+			<div class="nav-con-close">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</div>
+			<div class='header'>
+				工具类别
+			</div>
+			<div id='toolCategories'>
+				<div id='cat1'><a href='javascript:void(0);'>种类1</a></div>
+				<div id='cat2'><a href='javascript:void(0);'>种类2</a></div>
+			</div>
+		</div>
+		<div id="cat1-options" class="tool-content">
+			<div class="nav-con-close">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</div>
+			<div class='header'>
+				种类1
+			</div>
+			<div class='toolOptions'>
+				<div><a href='#'>tool1</a></div>
+				<div><a href='#'>tool2</a></div>
+			</div>
+		</div>
+		<div id="cat2-options" class="tool-content">
+			<div class="nav-con-close">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</div>
+			<div class='header'>
+				种类2
+			</div>
+			<div class='toolOptions'>
+				<div><a href='#'>tool1</a></div>
+				<div><a href='#'>tool2</a></div>
+			</div>
+		</div>	
+{% endblock %}

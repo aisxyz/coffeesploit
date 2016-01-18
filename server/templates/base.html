@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Coffeesploit</title>
+		<link href='http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet'>
+		<link href="/static/css/base.css" rel="stylesheet">
+		{% block css %}
+		<link href="#" rel="stylesheet">
+		{% endblock %}
+	</head>
+	<body>
+		<div id="sidebar">
+			<div id="wrap">
+				<div id="home" class="item">
+					<a href='#'>									<!-- ****************** modify ****************** -->
+						<span class="glyphicon glyphicon-home"></span>
+						<div>
+							首页
+						</div>
+					</a>
+				</div>
+				<div id="tools" class="item">
+					<a href='javascript:void(0);'>
+						<span class="glyphicon glyphicon-cutlery"></span>
+						<div>
+							工具
+						</div>
+					</a>
+				</div>
+				<div id="settings" class="item">
+					<a href='#'>									<!-- ****************** modify ****************** -->
+						<span class="glyphicon glyphicon-cog"></span>
+						<div>
+							设置
+						</div>
+					</a>
+				</div>
+				<div id="update" class="item">
+					<a href='#'>									<!-- ****************** modify ****************** -->
+						<span class="glyphicon glyphicon-search"></span>
+						<div>
+							更新
+						</div>
+					</a>
+				</div>
+				<div id="foot" class="item">
+					<a href='#'>									<!-- ****************** modify ****************** -->
+						<span class="glyphicon glyphicon-record"></span>
+						<div>
+							足迹
+						</div>
+					</a>
+				</div>
+				<div id="help" class="item">
+					<a href='#'>									<!-- ****************** modify ****************** -->
+						<span class="glyphicon glyphicon-road"></span>
+						<div>
+							帮助
+						</div>
+					</a>
+				</div>
+			</div>
+			<div id="closeBar">
+				<div>
+					<i class="glyphicon glyphicon-remove"></i>
+				</div>
+			</div>
+		</div>
+		
+		<div id="tools-content" class="nav-content">
+			<div class="nav-con-close">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</div>
+			<div class='header'>
+				工具类别
+			</div>
+			<div id='toolCategories'>
+				{% if toolCategories %}
+				{% for category in toolCategories %}
+					{#=========================================================
+					<div id='cat1'><a href='javascript:void(0);'>种类1</a></div>
+					<div id='cat2'><a href='javascript:void(0);'>种类2</a></div>
+					===========================================================
+					#}
+				<div id="{{ category }}"><a href='javascript:void(0);' style="color: #fff;">{{ category }}</a></div>
+				{% endfor %}
+				{% else %}
+				<div style='color:red'>Nothing</div>
+				{% endif %}
+			</div>
+		</div>
+		
+		{% for category in toolCategories %}
+		<div id="{{ category }}-options" class="tool-content">
+			<div class="nav-con-close">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</div>
+			<div class='header'>
+				{{ category }}
+			</div>
+			<div class='toolOptions'>
+				{% if toolsList[category] %}
+					{% for tool in toolsList[category] %}
+				<div><a href="{{url_for('set_args', toolName=tool)}}" style="color: #fff;">{{ tool }}</a></div>	
+					{% endfor %}
+				{% else %}
+				<div style='color:red'>Nothing</div>
+				{% endif %}
+				
+				{# =================================================================
+				<div><a href='#'>tool1</a></div>
+				<div><a href='#'>tool2</a></div>
+				  ==================================================================
+				#}
+			</div>
+		</div>
+		{% endfor %}
+		
+		<nav class="navbar navbar-inverse" role="navigation">
+			<div class="navbar-header navbar-right">
+				<!-- ****************** modify ****************** -->
+				<a href='#'><img id='logoImg' class='navbar-brand' src='/static/images/logo.jpg'/></a>
+				<a class="navbar-brand" href="#">Coffeesploit</a>
+				<a class="navbar-brand" href="#">关于</a>
+				<!-- ****************** modify ****************** -->
+		   </div>
+		</nav>
+		
+		<div id='content'>
+			{% block content %} {% endblock %}
+		</div>
+		
+		<script src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js'></script>
+		<script src='http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+		<script src="/static/js/sidebar.js"></script>
+		{% block js %}<script></script>{% endblock %}
+	</body>
+</html>

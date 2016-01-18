@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% if result  %}
+        {# not a string #}
+        {% if result is string %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {{result}}
+            </div>
+        </div>
+        {% else %}
+        {% for arg in result %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"> {{arg}}</h3>
+            </div>
+						{% if result[arg] is string %}
+            <div class="panel-body"> &nbsp;&nbsp;&nbsp;&nbsp;{{result[arg]}}</div>
+						{% else %}
+						<div class="panel-body">
+							<dl>
+								{% for item in result[arg]%}
+								<dt><b>{{ item }}:</b></dt>
+									<dd><strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ result[arg][item] }}</strong></dd>
+								{% endfor %}
+							</dl>
+						</div>
+						{% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+{% else %}
+        <strong> argments wrong,result is None!</strong>
+{% endif %}
+{% endblock %}

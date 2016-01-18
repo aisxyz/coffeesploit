@@ -1,0 +1,67 @@
+ #closeSetArg{
+	background: url('/static/images/close.png') no-repeat;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+	top: 15px;	
+}
+#maskSetArg{
+	background-color: #ccc;
+	opacity: 0.5;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 200;
+}
+#setArgContainer{
+	background: url('/static/images/sidebarBg4.jpg') cover;
+	position: fixed;
+	display: none;
+	width: 50%;
+	height: 300px;
+	z-index: 201;
+}
+ 
+ 
+ var ToolSelectBar = function(elementId) {
+        this.eId = elementId||'toolOptions';
+        this.el = document.getElementByClassName(this.eId);
+        this.el.addEventListener('click',function(evt) {
+            evt.stopPropagation();
+        });
+        //this.state = 'allClosed';//hasOpened
+        //this.currentOpenedEl = null;
+
+        var forEach = Array.prototype.forEach;
+        //var self = this;
+        var toolsList =  document.querySelectorAll('.' + this.eId + ' > div');
+        forEach.call(toolsList, function(tool){
+            tool.addEventListener('click',function(evt) {
+				var pageWidth = document.body.scrollWidth;
+				var pageHeight = document.body.scrollHeight;
+			
+				var visibleHeight = document.documentElement.clientHeight;
+			
+				var popupMask = document.createElement("div");
+				popupMask.id = "maskSetArg";
+				popupMask.style.height = pageHeight + "px";
+				popupMask.style.width = pageWidth + "px";
+				document.body.appendChild(popupMask);
+			
+				var setArgContainer = document.getElementById('setArgContainer');
+				setArgContainer.style.display = 'block';
+				//document.body.appendChild(setArgContainer);
+				var containerHeight = setArgContainer.offsetHeight;
+				var containerWidth = setArgContainer.offsetWidth;
+				setArgContainer.style.left = paghWidth/2 - containerWidth/2 + 'px';
+				setArgContainer.style.top = visibleHeight/2 - containerHeight/2 + 'px';
+			
+				var closeSetArg = popupMask.onclick = function(){
+					setArgContainer.style.display = 'none';
+					document.body.removeChild(popupMask);
+				};
+			};
+		};
+		var toolSelectBar = new ToolSelectBar();

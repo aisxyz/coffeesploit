@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+	    <div id='banner'>欢迎使用</div>
+		<div id="spinner">
+		  <div class="line1">c</div>
+		  <div class="line2">o</div>
+		  <div class="line3">f</div>
+		  <div class="line4">f</div>
+		  <div class="line5">e</div>
+		  <div class="line6">e</div>
+		  <div class="line7">s</div>
+		  <div class="line8">p</div>
+		  <div class="line9">l</div>
+		  <div class="line10">o</div>
+		  <div class="line11">i</div>
+		  <div class='line12'>t</div>
+		</div>
+		<a id='entrance' href='#'>
+			<img src='/static/images/arrow.jpg' alt='GO'/>
+			<div class='circle'></div>
+		</a>
+{% endblock %}

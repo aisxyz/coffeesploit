@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block css %}
+		<link href='/static/css/set_args.css' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+		<div id='setArgContainer'>
+			<div style="margin:50px 20px 10px">
+				<form action="{{ url_for('show_run_result')}}" method='post' role='form'>
+					{% for arg in argStatus.keys() %}
+					<div class='form-group'>
+						<span>{{ arg }}:<span>
+						{% if argStatus[arg] %}
+						<input class='form-control' name="{{ arg }}" value='{{argStatus[arg]}}'>
+						{% else %}
+						<input class='form-control' name="{{ arg }}">
+						{% endif %}
+					</div>
+					{% endfor %}
+					<div class='form-group'>
+						<button type='submit' class="btn btn-default">GO</button>
+					</div>
+				</form>
+			</div>
+			<div id='closeSetArg'></div>
+		</div>          <!-- ********** arguments set ##########-->
+{% endblock %}
