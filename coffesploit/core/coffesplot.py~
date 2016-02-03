@@ -69,24 +69,24 @@ class Coffesploit(object):
 		from config import UPDATE_URL
 		import os
 		try:
-			with open(UPDATE_URL + "config.ini", 'a', 1) as plugin_config_file:
+			with open(UPDATE_URL + "config.ini", 'w', 1) as plugin_config_file:
 				for item in os.listdir(UPDATE_URL):
 					if os.path.isdir(UPDATE_URL + item):
 						for obj in os.listdir(UPDATE_URL + item):
 							if os.path.isfile(os.path.join(UPDATE_URL + item, obj)) and obj[-3:] == ".py":
-								if obj != "__init__.py" and obj[:-3].lower() not in self.plugin_list:
+								if obj != "__init__.py":
 									plugin_info = "%s,%s,%s,%s%s" %(item, obj[:-3].lower(), obj, obj[:-3], os.linesep)
 									plugin_config_file.write(plugin_info)
 							elif os.path.isdir(os.path.join(UPDATE_URL + item, obj)):		# indicate it is a package
-								if obj.lower() not in self.plugin_list:
-									plugin_info = "%s,%s,%s,%s%s" %(item, obj.lower(), obj + '.' + obj + '.py', obj, os.linesep)
-									plugin_config_file.write(plugin_info)
+								plugin_info = "%s,%s,%s,%s%s" %(item, obj.lower(), obj + '.' + obj + '.py', obj, os.linesep)
+								plugin_config_file.write(plugin_info)
 				return("Update succeed, restart the program to load them.\n")
 		except:
 			return self.helper.gethelp('update')
 			
     def get_result_for_text(self):
-        result = ("*"*40 + " Run results of %s " + "*"*40 +"\n") %(self.current_plugin_name())
+        result = ("*"*40 + " Run results of %s " + "*"*40 +"\n") % self.current_plugin_name()
+        print 'r=======>', self.get_run_result()
         result += run_result.get_result_for_text(self.get_run_result())
         #while (not logmanager.log.empty()):
         #    result += '\n'+ str(logmanager.getlog())
@@ -103,21 +103,13 @@ class Coffesploit(object):
         return self.pluginmanager.plugin_result()
 		
     def get_plugin_list(self):
-        return self.pluginmanager.importer.get_plugins_list()
+        return self.pluginmanager.get_plugins_list()
 
     def get_tool_categories(self):
-        return( [ d for d in os.listdir(UPDATE_URL) if os.path.isdir(os.path.join(UPDATE_URL, d))] )
-		
+        return self.pluginmanager.get_tool_categories()
+			
     def get_tools_by_category(self):
-        tools_of_category = {}
-        for category in self.get_tool_categories():
-            tools_of_category[category] = []
-            for obj in os.listdir(UPDATE_URL + category):
-                if os.path.isdir(os.path.join(UPDATE_URL + category, obj)):				# indicate it is a package
-                    tools_of_category[category].append(obj.lower())
-                elif obj[-3:] == ".py" and obj != "__init__.py":
-                    tools_of_category[category].append(obj[:-3].lower())
-        return tools_of_category
+        return self.pluginmanager.get_tools_by_category()
 		
     def current_plugin_name(self):
         return self.pluginmanager.current_plugin_name

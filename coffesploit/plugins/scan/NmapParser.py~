@@ -28,7 +28,8 @@ class NmapParser(Plugin):
 			
 	def result(self):
 		if self.hosts is not None and self.nm.all_hosts():
-			return self.scan_result.update({'结果': 'ok?'})
+			print("result:==========================\n", self.scan_result)
+			return self.scan_result
 					
 	def run(self, status):
 		if status and type(status) == dict:

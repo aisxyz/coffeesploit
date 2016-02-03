@@ -15,8 +15,8 @@ class ResultPlugin(object):
 					result = format_outcomes(result, value, tab_count + 1)
 				else:
 					result += "\n" + "    "*tab_count + '----' + str(key) + ": " + str(value)
-			return result			
-		result = format_outcomes("", outcomes, 0)
+			return result
+		return format_outcomes("", outcomes, 0)
 	
 	def get_result_for_visual(self, outcomes, toolName):		# outcomes need to be a dict-like.
 		def format_outcomes(result, outcomes):
@@ -31,6 +31,7 @@ class ResultPlugin(object):
 			return result			
 		result = [{'name': str(toolName), 'children': []}]
 		result[-1] = format_outcomes(result[-1], outcomes)
+		return result
 		
 run_result = ResultPlugin()
 

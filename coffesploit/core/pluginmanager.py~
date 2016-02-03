@@ -23,8 +23,8 @@ class PluginManager(object):
         """if plugin name is in config file set plugin name
         调用importer的函数从配置文件中读取插件名称
         """
-        #plugin_list = self.importer.get_plugins_list()
-        if plugin_name in self.get_plugins_list():
+        plugin_list = self.get_plugins_list()
+        if plugin_name in plugin_list:
             self.current_plugin_name = plugin_name
             self.current_plugin_type, self.current_plugin_file, self.current_plugin_class = plugin_list[plugin_name]
             return ''
@@ -69,6 +69,7 @@ class PluginManager(object):
     def plugin_result(self):
 		"""get the result of the plugin"""
 		if self.current_plugin is not None:
+			print "result:", self.current_plugin.result()
 			return self.current_plugin.result()
 		else:
 			return self.current_plugin_name, "Reslut is None"			# return a tuple

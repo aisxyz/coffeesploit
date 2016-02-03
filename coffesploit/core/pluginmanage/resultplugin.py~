@@ -15,16 +15,15 @@ class ResultPlugin(object):
 					result = format_outcomes(result, value, tab_count + 1)
 				else:
 					result += "\n" + "    "*tab_count + '----' + str(key) + ": " + str(value)
-			return result			
+			return result
 		result = format_outcomes("", outcomes, 0)
 	
-	def get_result_for_visual(self, outcomes, toolName):					# outcomes need to be a dict-like.
+	def get_result_for_visual(self, outcomes, toolName):		# outcomes need to be a dict-like.
 		def format_outcomes(result, outcomes):
 			for key, value in outcomes.iteritems():
 				if not value:
 					continue
 				if issubclass(type(value), dict):
-					#print result['children'], '='*40
 					result['children'].append({'name': str(key), 'children': []})
 					result['children'][-1] = format_outcomes(result['children'][-1], value)
 				else:

@@ -85,7 +85,7 @@ class Coffesploit(object):
 			return self.helper.gethelp('update')
 			
     def get_result_for_text(self):
-        result = ("*"*40 + " Run results of %s " + "*"*40 +"\n") %(self.current_plugin_name())
+        result = ("*"*40 + " Run results of %s " + "*"*40 +"\n") % self.current_plugin_name()
         result += run_result.get_result_for_text(self.get_run_result())
         #while (not logmanager.log.empty()):
         #    result += '\n'+ str(logmanager.getlog())
