@@ -1,76 +1,68 @@
-+++++++++++++++++++++++++++++++++++++++++++++ ^_^ ¿ªÊ¼ ^_^ ++++++++++++++++++++++++++++++++++++++++++++
-ÖÂ¸÷Î»×Î×Î²»¾ëµÄ¿ª·¢Õß£º	
-	ÔÚÄãÏÂ¶¨¾öÐÄÏëÒª¹±Ï×³öÄãÐ´µÄ¹¤¾ßÊ±£¬ÎªÁËÈ·±£ÄÜÔÚ±¾¿ò¼ÜÉÏÁ¼ºÃÔËÐÐ£¬ÇëÎñ±Ø¹Ø×¢ÒÔÏÂÁ½·½Ãæ£º
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ^_^ å¼€å§‹ ^_^ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+è‡´å„ä½å­œå­œä¸å€¦çš„å¼€å‘è€…ï¼š	
+	åœ¨ä½ ä¸‹å®šå†³å¿ƒæƒ³è¦è´¡çŒ®å‡ºä½ å†™çš„å·¥å…·æ—¶ï¼Œä¸ºäº†ç¡®ä¿èƒ½åœ¨æœ¬æ¡†æž¶ä¸Šè‰¯å¥½è¿è¡Œï¼Œè¯·åŠ¡å¿…å…³æ³¨ä»¥ä¸‹ä¸¤æ–¹é¢ï¼š
 	
-	£¨Ò»£©¹æ·¶ÐÔ
-	1¡¢¿ª·¢ÓïÑÔ£ºpython£¬ÆäËü±à³ÌÓïÑÔÔÝ²»Ìá¹©·­Òë¹¦ÄÜ¡£
-	2¡¢Èç¹ûÄãµÄ¹¤¾ß²»ÊÇµ¥Ò»Ä£¿é£¬Çë½«ËùÓÐÏà¹ØÎÄ¼þ´ò°ü³Épython°ü,¼´Ö»ÄÜÌá½»°ü»òÕßµ¥Ò»Ä£¿é¡£
-	3¡¢Çë±£Ö¤°üÃû£¨Èç¹ûÊÇ°üµÄ»°£©¡¢Ä£¿éÃû¼°Ö÷ÀàÃûÈýÕßÒ»Ñù£¬°üÀ¨´óÐ¡Ð´£¬ÆäÓàËæÒâ¡£
-		Ê¾Àý£º¼ÙÈçÄãµÄ¹¤¾ßÓÐ¶à¸öÎÄ¼þ£¬Ö÷ÀàÃûÎª MyTool£¬ÄÇÃ´Ó¦ÕâÑù´ò°ü£º
+	ï¼ˆä¸€ï¼‰è§„èŒƒæ€§
+	1ã€å¼€å‘è¯­è¨€ï¼špython 2.7ï¼Œå…¶å®ƒç¼–ç¨‹è¯­è¨€æš‚ä¸æä¾›ç¿»è¯‘åŠŸèƒ½ã€‚
+	2ã€å¦‚æžœä½ çš„å·¥å…·ä¸æ˜¯å•ä¸€æ¨¡å—ï¼Œè¯·å°†æ‰€æœ‰ç›¸å…³æ–‡ä»¶æ‰“åŒ…æˆpythonåŒ…,å³åªèƒ½æäº¤åŒ…æˆ–è€…å•ä¸€æ¨¡å—ã€‚
+	3ã€è¯·ä¿è¯åŒ…åï¼ˆå¦‚æžœæ˜¯åŒ…çš„è¯ï¼‰ã€æ¨¡å—ååŠä¸»ç±»åä¸‰è€…ä¸€æ ·ï¼ŒåŒ…æ‹¬å¤§å°å†™ï¼Œå…¶ä½™éšæ„ã€‚
+		ç¤ºä¾‹ï¼šå‡å¦‚ä½ çš„å·¥å…·æœ‰å¤šä¸ªæ–‡ä»¶ï¼Œä¸»ç±»åä¸º MyToolï¼Œé‚£ä¹ˆåº”è¿™æ ·æ‰“åŒ…ï¼š
 		MyTool:
 		------ __init__.py
-		------ MyTool.py (º¬Ö÷ÀàMyTool)
+		------ MyTool.py (å«ä¸»ç±»MyTool)
 		------ otherModules.py
 		------ otherFolders
 	
-	£¨¶þ£©¼æÈÝÐÔ
-	ÔÚÄãµÄÖ÷ÀàÖÐ£¬ÄãÐèÒª×¢ÒâÒÔÏÂ¼¸µã£º
-	1¡¢¼Ì³ÐPluginÀà£ºfrom coffesploit.core.pluginmanage.plugin import Plugin¡£´ËÒªµã²»Ç¿Çó£¬µ«ÎªÁË
-	   °²È«Æð¼û£¬½¨Òé¼Ì³Ð¡£
-	2¡¢ÖÁÉÙÐèÒªÌá¹©ÒÔÏÂ¼¸¸ö·½·¨£¬²ÎÊýÒ²±ØÐëÒ»ÖÂ£º
-	   def status(self) -----> dict: Ìá¹©ÔËÐÐÄãµÄ¹¤¾ßËùÆÚ´ýµÄËùÓÐ²ÎÊý£¬ÊýÁ¿²»ÏÞ£¬ÒÔ×ÖµäµÄÐÎÊ½·µ»Ø£¬
-							 ×ÖµäµÄkeyÎª²ÎÊýÃû×Ö£¬valueËæÒâ(¿É¿¼ÂÇÓÃÆäÉèÖÃÄ¬ÈÏ²ÎÊý)¡£Òò´Ë£¬ÔÚÄãµÄ
-							 ³õÊ¼»¯º¯Êý __init__() ÖÐ²»ÄÜÔÙ´«µÝ²ÎÊý¡£Èç¹û¹¤¾ß²»ÐèÒª²ÎÊý£¬¿É·µ»ØÒ»
-							 ¸ö¿Õ×Öµä£¬»ò²»Ìá¹©±¾·½·¨£¨Ç°ÌáÊÇ¼Ì³ÐÁËÀàPlugin£©¡£
-	   def run(self, status) -----> None: ÓÃÀ´ÔËÐÐ¹¤¾ß£¬²ÎÊýstatusÊÇÉèÖÃºóµÄ²ÎÊý×Öµä£¬ÒâÒåÍ¬ÉÏ£¬ÎÞ
-							 ·µ»ØÖµ¡£
-	   def result(self) -----> dict: ÓÃÀ´·µ»ØÔËÐÐ¹¤¾ßºóÆÚ´ýµÃµ½µÄ½á¹û£¬Ò²ÒÔ×ÖµäµÄÐÎÊ½·µ»Ø¡£
-	   def help(self) -----> str: ÓÃÀ´·µ»Ø¶ÔÄãµÄ¹¤¾ßµÄ¹¦ÄÜ¡¢Ê¹ÓÃ·½·¨µÈµÄ¼òµ¥ÃèÊö£¬ÒÔ±ã¹ÜÀíÔ±·ÖÀà»ò
-							 ËûÈËÊ¹ÓÃ£¬Ò²¿É²»Ìá¹©±¾·½·¨£¨Ç°ÌáÊÇ¼Ì³ÐÁËÀàPlugin£©£¬µ«²»ÍÆ¼ö¡£·µ»Ø×Ö·û
-							 ´®¡£
-	Ê¾Àý£º¼ÙÈçÄãÓÐÒ»¸ö¹¤¾ßÀà MyScanTool£¬ÊÇÓÃÀ´É¨ÃèÄ³Íø¶ÎÄÚµÄÖ÷»úÐÅÏ¢£¬Æä±¾ÉíÐèÒªÈý¸ö²ÎÊý£ºhosts¡¢
-		  ports£¨Ä¬ÈÏÎª80£¬3389£©¡¢otherArgs£¬ÄÇÃ´Ó¦ÕâÑù¹æ»®ÄãµÄ³ÌÐò£º
-		  ----------------------------------------------------------------------------------------
-		  |import otherModules																	 |
-		  |from coffesploit.core.pluginmanage.plugin import Plugin	 # ×¢Òâ¼Ì³ÐPlugin			 |
-		  |																						 |
-		  |class MyScanTool(Plugin):															 |
-		  |		def __init__(self):					# ×¢Òâ²»ÄÜÔÚ´Ë´«²ÎÊý						     |
-		  |			# initialize work															 |
-		  |																						 |
-		  |		def status(self):					# ×¢Òâ·µ»Ø×Öµä£¬°üº¬ÐèÒªµÄ²ÎÊýÐÅÏ¢			 |
-		  |			return {'hosts': None, 'ports': '80,3389', 'otherArgs': None}				 |
-		  |																						 |
-		  |		def run(self, status):															 |
-		  |			if type(status) == dict:													 |
-		  |				hosts = status.get('hosts')												 |
-		  |				ports = status.get('ports')												 |
-		  |				otherArgs = status.get('otherArgs')										 |
-		  |				# do something.....														 |
-		  |																						 |
-		  |		def result(self						# ×¢Òâ·µ»Ø×Öµä£¬°üº¬ÆÚ´ýÔËÐÐ½á¹û			     |
-		  |			return {'url': 'xxx', 'info': 'xxx'}										 |
-		  |																						 |
-		  |		def help(self):						# ×¢ÒâÌí¼Ó¹¤¾ßÃèÊöÐÅÏ¢						 |
-		  |			return('''																	 |
-		  |					Description: scan hosts.											 |
-		  |					Useage: hosts ---> Demo: www.google.com or 192.168.174.33 etc.       |
-		  |							ports ---> Demo: 20,25-80,91 etc.							 |
-		  |							otherArgs ---> Demo: -u,-l etc.								 |
-		  |			''')																         |
-		  |																						 |
-		  |		def otherMethods(self, *args, **kwargs):	# ÆäËü·½·¨ËæÒâ						 |
-		  |			pass																		 |
-		  |																						 |
-		  |class OtherClasses:				# ÈçÓÐ±ØÒªÒ²¿É¶¨ÒåÆäËüÀà                              |
-		  |		# methods																		 |
-		  | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+	ï¼ˆäºŒï¼‰å…¼å®¹æ€§
+	åœ¨ä½ çš„ä¸»ç±»ä¸­ï¼Œä½ éœ€è¦æ³¨æ„ä»¥ä¸‹å‡ ç‚¹ï¼š
+	1ã€ç»§æ‰¿Pluginç±»ï¼šfrom coffesploit.core.pluginmanage.plugin import Pluginã€‚æ­¤è¦ç‚¹ä¸å¼ºæ±‚ï¼Œä½†ä¸ºäº†å®‰å…¨èµ·è§ï¼Œå»ºè®®ç»§æ‰¿ã€‚
+	2ã€è‡³å°‘éœ€è¦æä¾›ä»¥ä¸‹å‡ ä¸ªæ–¹æ³•ï¼Œå‚æ•°ä¹Ÿå¿…é¡»ä¸€è‡´ï¼š
+	   def status(self) -----> dict: æä¾›è¿è¡Œä½ çš„å·¥å…·æ‰€æœŸå¾…çš„æ‰€æœ‰å‚æ•°ï¼Œæ•°é‡ä¸é™ï¼Œä»¥å­—å…¸çš„å½¢å¼è¿”å›žï¼Œå­—å…¸çš„keyä¸ºå‚æ•°åå­—ï¼Œvalueéšæ„
+	   	(å¯è€ƒè™‘ç”¨å…¶è®¾ç½®é»˜è®¤å‚æ•°)ã€‚å› æ­¤ï¼Œåœ¨ä½ çš„åˆå§‹åŒ–å‡½æ•° __init__()ä¸­ä¸èƒ½å†ä¼ é€’å‚æ•°ã€‚å¦‚æžœå·¥å…·ä¸éœ€è¦å‚æ•°ï¼Œå¯è¿”å›žä¸€ä¸ªç©ºå­—å…¸ï¼Œæˆ–
+	   	ä¸æä¾›æœ¬æ–¹æ³•ï¼ˆå‰ææ˜¯ç»§æ‰¿äº†ç±»Pluginï¼‰ã€‚
+	   def run(self, status) -----> None: ç”¨æ¥è¿è¡Œå·¥å…·ï¼Œå‚æ•°statusæ˜¯è®¾ç½®åŽçš„å‚æ•°å­—å…¸ï¼Œæ„ä¹‰åŒä¸Šï¼Œæ— è¿”å›žå€¼ã€‚
+	   def result(self) -----> dict: ç”¨æ¥è¿”å›žè¿è¡Œå·¥å…·åŽæœŸå¾…å¾—åˆ°çš„ç»“æžœï¼Œä¹Ÿä»¥å­—å…¸çš„å½¢å¼è¿”å›žã€‚
+	   def help(self) -----> str: ç”¨æ¥è¿”å›žå¯¹ä½ çš„å·¥å…·çš„åŠŸèƒ½ã€ä½¿ç”¨æ–¹æ³•ç­‰çš„ç®€å•æè¿°ï¼Œä»¥ä¾¿ç®¡ç†å‘˜åˆ†ç±»æˆ–ä»–äººä½¿ç”¨ï¼Œä¹Ÿå¯ä¸æä¾›æœ¬æ–¹æ³•ï¼ˆå‰æ
+	   	æ˜¯ç»§æ‰¿äº†ç±»Pluginï¼‰ï¼Œä½†ä¸æŽ¨èã€‚è¿”å›žå­—ç¬¦ä¸²ã€‚
+	   	
+	ç¤ºä¾‹ï¼šå‡å¦‚ä½ æœ‰ä¸€ä¸ªå·¥å…·ç±» MyScanToolï¼Œæ˜¯ç”¨æ¥æ‰«ææŸç½‘æ®µå†…çš„ä¸»æœºä¿¡æ¯ï¼Œå…¶æœ¬èº«éœ€è¦ä¸‰ä¸ªå‚æ•°ï¼šhostsã€portsï¼ˆé»˜è®¤ä¸º80ï¼Œ3389ï¼‰ã€
+	      otherArgsï¼Œé‚£ä¹ˆåº”è¿™æ ·è§„åˆ’ä½ çš„ç¨‹åºï¼š
+		  ----------------------------------------------------------------------------------------------------------
+		  |import otherModules										            |
+		  |from coffesploit.core.pluginmanage.plugin import Plugin	# æ³¨æ„ç»§æ‰¿Plugin			    |
+		  |													    |
+		  |class MyScanTool(Plugin):										    |
+		  |		def __init__(self):			  	# æ³¨æ„ä¸èƒ½åœ¨æ­¤ä¼ å‚æ•°			    |
+		  |			# initialize work							            |
+		  |													    |
+		  |		def status(self):				# æ³¨æ„è¿”å›žå­—å…¸ï¼ŒåŒ…å«éœ€è¦çš„å‚æ•°ä¿¡æ¯	    |
+		  |			return {'hosts': None, 'ports': '80,3389', 'otherArgs': None}		            |
+		  |													    |
+		  |		def run(self, status):									    |
+		  |			if type(status) == dict:							    |
+		  |				hosts = status.get('hosts')						    |
+		  |				ports = status.get('ports')						    |
+		  |				otherArgs = status.get('otherArgs')					    |
+		  |				# do something.....							    |
+		  |													    |
+		  |		def result(self					# æ³¨æ„è¿”å›žå­—å…¸ï¼ŒåŒ…å«æœŸå¾…è¿è¡Œç»“æžœ	    |
+		  |			return {'url': 'xxx', 'info': 'xxx'}						    |
+		  |													    |
+		  |		def help(self):					# æ³¨æ„æ·»åŠ å·¥å…·æè¿°ä¿¡æ¯			    |
+		  |			return('''Description: scan hosts.						    |
+		  |				  Useage: hosts ---> Demo: www.google.com or 192.168.174.33 etc.            |
+		  |					  ports ---> Demo: 20,25-80,91 etc.				    |
+		  |					  otherArgs ---> Demo: -u,-l etc. ''')				    |
+		  |													    |
+		  |		def otherMethods(self, *args, **kwargs):	# å…¶å®ƒæ–¹æ³•éšæ„				    |
+		  |			pass										    |
+		  |													    |
+		  |class OtherClasses:				# å¦‚æœ‰å¿…è¦ä¹Ÿå¯å®šä¹‰å…¶å®ƒç±»                                    |
+		  |	# methods											    |
+		  | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |
 	
-	ÁíÍâ£¬ÎªÁË±ÜÃâ²»±ØÒªµÄÂé·³£¬ÇëÔÝÊ±ÉáÆúÄã¶ÔÖÐÎÄµÄÈÈ°®£¬Èç¹ûÄã¾­³£ÉîÊÜ±àÂëÀ§ÈÅ£¬ÎÒÏàÐÅÄã»áÍ¬ÒâÎÒ
-	µÄ¹Ûµã£¡
-	×îºó£¬Èç¹ûÄãÒ»ÇÐÒÑ×¼±¸¾ÍÐ÷£¬Çë¼°Ê±Í¨Öª¹ÜÀíÔ±½ÓÊÕ£¬´ýÉóºËÍêÆäÖÐ²¢ÎÞ¡°»Æ¡¢¶Ä¡¢¶¾¡±µÈ²»Á¼ÐÅÏ¢ºó£¬Ëæ
-	ºóµÄÊÂÇé±ã¿É½»ÓÉÆä×ÔÐÐ´¦ÀíÁË¡£
-	
-																					  ¹æ·¶´úÂë
-																						  ´ÓÄã×öÆð
-+++++++++++++++++++++++++++++++++++++++++++ ^_^ ½áÊø ^_^ ++++++++++++++++++++++++++++++++++++++++++++
+	å¦å¤–ï¼Œä¸ºäº†é¿å…ä¸å¿…è¦çš„éº»çƒ¦ï¼Œè¯·æš‚æ—¶èˆå¼ƒä½ å¯¹ä¸­æ–‡çš„çƒ­çˆ±ï¼Œå¦‚æžœä½ ç»å¸¸æ·±å—ç¼–ç å›°æ‰°ï¼Œæˆ‘ç›¸ä¿¡ä½ ä¼šåŒæ„æˆ‘çš„è§‚ç‚¹ï¼
+	æœ€åŽï¼Œå¦‚æžœä½ ä¸€åˆ‡å·²å‡†å¤‡å°±ç»ªï¼Œè¯·åŠæ—¶é€šçŸ¥ç®¡ç†å‘˜æŽ¥æ”¶ï¼Œå¾…å®¡æ ¸å®Œå…¶ä¸­å¹¶æ— â€œé»„ã€èµŒã€æ¯’â€ç­‰ä¸è‰¯ä¿¡æ¯åŽï¼ŒéšåŽçš„äº‹æƒ…ä¾¿å¯äº¤ç”±å…¶è‡ªè¡Œå¤„ç†äº†ã€‚
+																					  è§„èŒƒä»£ç 
+													ä»Žä½ åšèµ·
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ^_^ ç»“æŸ ^_^ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
