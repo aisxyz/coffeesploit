@@ -57,7 +57,7 @@
 		  |		def otherMethods(self, *args, **kwargs):	# 其它方法随意				    |
 		  |			pass										    |
 		  |													    |
-		  |class OtherClasses:				# 如有必要也可定义其它类                                     |
+		  |class OtherClasses:				# 如有必要也可定义其它类                                      |
 		  |	# methods											    |
 		  | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |
 	
