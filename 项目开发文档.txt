@@ -29,13 +29,13 @@
 	      otherArgs，那么应这样规划你的程序：
 		  ----------------------------------------------------------------------------------------------------------
 		  |import otherModules										            |
-		  |from coffesploit.core.pluginmanage.plugin import Plugin	# 注意继承Plugin			           |
+		  |from coffesploit.core.pluginmanage.plugin import Plugin	# 注意继承Plugin			            |
 		  |													    |
 		  |class MyScanTool(Plugin):										    |
 		  |		def __init__(self):			  	# 注意不能在此传参数			    |
 		  |			# initialize work							            |
 		  |													    |
-		  |		def status(self):				# 注意返回字典，包含需要的参数信息	           |
+		  |		def status(self):				# 注意返回字典，包含需要的参数信息	            |
 		  |			return {'hosts': None, 'ports': '80,3389', 'otherArgs': None}		            |
 		  |													    |
 		  |		def run(self, status):									    |
@@ -45,7 +45,7 @@
 		  |				otherArgs = status.get('otherArgs')					    |
 		  |				# do something.....							    |
 		  |													    |
-		  |		def result(self					# 注意返回字典，包含期待运行结果	           |
+		  |		def result(self					# 注意返回字典，包含期待运行结果	            |
 		  |			return {'url': 'xxx', 'info': 'xxx'}						    |
 		  |													    |
 		  |		def help(self):					# 注意添加工具描述信息			    |
@@ -57,8 +57,8 @@
 		  |		def otherMethods(self, *args, **kwargs):	# 其它方法随意				    |
 		  |			pass										    |
 		  |													    |
-		  |class OtherClasses:				# 如有必要也可定义其它类                                    |
-		  |	# methods											     |
+		  |class OtherClasses:				# 如有必要也可定义其它类                                     |
+		  |	# methods											    |
 		  | _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |
 	
 	另外，为了避免不必要的麻烦，请暂时舍弃你对中文的热爱，如果你经常深受编码困扰，我相信你会同意我的观点！
